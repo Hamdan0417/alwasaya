@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommuNexis | شركة الوصايا الخمس للتجارة</title>
+    
+    <!-- Google Fonts: Cairo for Arabic, Inter for English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9', // Sky blue
+                            600: '#0284c7',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            dark: '#0f172a'
+                        }
+                    },
+                    fontFamily: {
+                        arabic: ['Cairo', 'sans-serif'],
+                        english: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            transition: font-family 0.3s ease;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #0ea5e9, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="font-arabic bg-gray-50 text-gray-800 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-xl tracking-tight text-brand-900">CommuNexis</span>
+                        <span class="text-xs text-gray-500" data-key="company_legal">شركة الوصايا الخمس</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 space-x-reverse">
+                    <a href="#home" class="text-gray-600 hover:text-brand-600 transition px-3 py-2 font-medium" data-key="nav_home">الرئيسية</a>
+                    <a href="#about" class="text-gray-600 hover:text-brand-600 transition px-3 py-2 font-medium" data-key="nav_about">من نحن</a>
+                    <a href="#services" class="text-gray-600 hover:text-brand-600 transition px-3 py-2 font-medium" data-key="nav_services">خدماتنا</a>
+                    <a href="#contact" class="text-gray-600 hover:text-brand-600 transition px-3 py-2 font-medium" data-key="nav_contact">تواصل معنا</a>
+                    
+                    <button onclick="toggleLanguage()" class="bg-gray-100 hover:bg-gray-200 text-brand-800 px-4 py-2 rounded-full transition flex items-center gap-2 text-sm font-semibold border border-gray-300">
+                        <i class="fa-solid fa-globe"></i>
+                        <span id="lang-text">English</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-brand-600 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50" data-key="nav_home">الرئيسية</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50" data-key="nav_about">من نحن</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50" data-key="nav_services">خدماتنا</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50" data-key="nav_contact">تواصل معنا</a>
+                <button onclick="toggleLanguage()" class="w-full text-right px-3 py-2 text-brand-600 font-bold border-t mt-2 flex items-center gap-2">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="lang-text-mobile">English</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 z-0 opacity-10">
+            <svg class="h-full w-full text-brand-500" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0 100 C 20 0 50 0 100 100 Z"></path>
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <span class="inline-block py-1 px-3 rounded-full bg-brand-100 text-brand-800 text-sm font-semibold mb-6" data-key="hero_badge">المستقبل يبدأ هنا</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-dark tracking-tight leading-tight mb-6">
+                    <span data-key="hero_title_1">نحول الأنظمة التقليدية</span>
+                    <br class="hidden sm:block">
+                    <span class="gradient-text" data-key="hero_title_2">إلى حلول رقمية ذكية</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed" data-key="hero_desc">
+                    في CommuNexis، نمكن الشركات والمؤسسات من قيادة التحول الرقمي من خلال تقنيات البلوكتشين، أنظمة ERP، وحلول الويب المتطورة.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#contact" class="px-8 py-4 bg-brand-600 text-white font-bold rounded-xl shadow-lg hover:bg-brand-700 transform hover:-translate-y-1 transition duration-300" data-key="cta_primary">
+                        ابدأ التحول الآن
+                    </a>
+                    <a href="#services" class="px-8 py-4 bg-white text-brand-700 font-bold rounded-xl shadow border border-gray-200 hover:bg-gray-50 transition duration-300" data-key="cta_secondary">
+                        استكشف خدماتنا
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                <div class="mb-12 lg:mb-0 relative">
+                    <div class="relative rounded-2xl shadow-2xl overflow-hidden bg-brand-900 h-80 lg:h-96 flex items-center justify-center text-white">
+                        <!-- Abstract Tech Representation -->
+                        <i class="fa-solid fa-microchip text-9xl opacity-20 absolute animate-pulse"></i>
+                        <div class="z-10 text-center p-8">
+                            <h3 class="text-3xl font-bold mb-2">CommuNexis</h3>
+                            <p class="text-brand-200" data-key="about_img_text">الابتكار • التطوير • المستقبل</p>
+                        </div>
+                    </div>
+                    <!-- Decorative shape -->
+                    <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-brand-500 rounded-full opacity-50 blur-2xl"></div>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-brand-dark mb-6" data-key="about_title">من نحن؟</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed" data-key="about_desc_1">
+                        شركة الوصايا الخمس للتجارة هي شركة تقنية رائدة مقرها الرياض. نحن متخصصون في نقل المؤسسات العامة والخاصة من بيئة العمل التقليدية إلى بيئة رقمية متكاملة.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-key="about_desc_2">
+                        نؤمن بأن التكنولوجيا ليست مجرد أدوات، بل هي المحرك الأساسي للنمو. فريقنا يجمع بين الخبرة الاستراتيجية والبراعة التقنية لتقديم حلول مخصصة تناسب احتياجاتك.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-brand-500 text-xl"></i>
+                            <span class="text-gray-700 font-medium" data-key="feature_1">حلول مبتكرة ومخصصة</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-brand-500 text-xl"></i>
+                            <span class="text-gray-700 font-medium" data-key="feature_2">فريق تقني محترف</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-brand-500 text-xl"></i>
+                            <span class="text-gray-700 font-medium" data-key="feature_3">دعم فني مستمر</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-brand-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-brand-dark mb-4" data-key="services_title">خدماتنا التقنية</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-key="services_subtitle">
+                    نقدم مجموعة شاملة من الخدمات لضمان نجاح تحولك الرقمي
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1: Blockchain -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-brand-500">
+                    <div class="w-14 h-14 bg-brand-100 rounded-lg flex items-center justify-center text-brand-600 text-2xl mb-6">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-key="srv_1_title">بلوكتشين</h3>
+                    <p class="text-gray-600" data-key="srv_1_desc">
+                        حلول آمنة ولاممركزية لتوثيق البيانات والمعاملات بأحدث تقنيات سلاسل الكتل.
+                    </p>
+                </div>
+
+                <!-- Service 2: ERP -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-brand-500">
+                    <div class="w-14 h-14 bg-brand-100 rounded-lg flex items-center justify-center text-brand-600 text-2xl mb-6">
+                        <i class="fa-solid fa-sitemap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-key="srv_2_title">أنظمة ERP</h3>
+                    <p class="text-gray-600" data-key="srv_2_desc">
+                        أنظمة تخطيط موارد المؤسسات لإدارة العمليات، الموارد البشرية، والمخزون بكفاءة عالية.
+                    </p>
+                </div>
+
+                <!-- Service 3: Web Design -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-brand-500">
+                    <div class="w-14 h-14 bg-brand-100 rounded-lg flex items-center justify-center text-brand-600 text-2xl mb-6">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-key="srv_3_title">تصميم مواقع</h3>
+                    <p class="text-gray-600" data-key="srv_3_desc">
+                        مواقع إلكترونية جذابة وسريعة تعزز تواجدك الرقمي وتخدم عملاءك على مدار الساعة.
+                    </p>
+                </div>
+
+                <!-- Service 4: App Design -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-brand-500">
+                    <div class="w-14 h-14 bg-brand-100 rounded-lg flex items-center justify-center text-brand-600 text-2xl mb-6">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-key="srv_4_title">تصميم تطبيقات</h3>
+                    <p class="text-gray-600" data-key="srv_4_desc">
+                        تطبيقات هواتف ذكية (iOS & Android) بتجربة مستخدم سلسة وأداء عالي.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-brand-700 font-semibold text-lg bg-white inline-block px-6 py-3 rounded-full shadow-sm" data-key="srv_footer">
+                    <i class="fa-solid fa-wand-magic-sparkles mx-2"></i>
+                    وكل ما يختص بالتقنية والحلول الرقمية
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-brand-900 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row">
+                
+                <!-- Contact Info -->
+                <div class="lg:w-5/12 p-10 lg:p-16 bg-brand-800 text-white flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6" data-key="contact_title">تواصل معنا</h2>
+                        <p class="text-brand-200 mb-10 text-lg" data-key="contact_subtitle">
+                            هل أنت مستعد لنقل أعمالك للمستوى التالي؟ فريقنا جاهز للإجابة على استفساراتك.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-brand-700 p-3 rounded-lg">
+                                    <i class="fa-solid fa-location-dot text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" data-key="contact_loc_title">الموقع</h4>
+                                    <p class="text-brand-200">Riyadh, Saudi Arabia</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="bg-brand-700 p-3 rounded-lg">
+                                    <i class="fa-solid fa-envelope text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" data-key="contact_email_title">البريد الإلكتروني</h4>
+                                    <p class="text-brand-200 font-mono">contact@alwasaya.com</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="bg-brand-700 p-3 rounded-lg">
+                                    <i class="fa-solid fa-globe text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" data-key="contact_web_title">الموقع الإلكتروني</h4>
+                                    <p class="text-brand-200 font-mono">www.alwasaya.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 pt-8 border-t border-brand-700">
+                         <div class="flex space-x-4 space-x-reverse">
+                             <!-- Social Placeholders -->
+                             <a href="#" class="w-10 h-10 rounded-full bg-brand-700 flex items-center justify-center hover:bg-brand-600 transition"><i class="fa-brands fa-twitter"></i></a>
+                             <a href="#" class="w-10 h-10 rounded-full bg-brand-700 flex items-center justify-center hover:bg-brand-600 transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                             <a href="#" class="w-10 h-10 rounded-full bg-brand-700 flex items-center justify-center hover:bg-brand-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                         </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:w-7/12 p-10 lg:p-16 bg-white">
+                    <form onsubmit="event.preventDefault(); alert('Thank you! This is a demo form.');">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2" data-key="form_name">الاسم</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent transition outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2" data-key="form_phone">رقم الهاتف</label>
+                                <input type="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent transition outline-none">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2" data-key="form_email">البريد الإلكتروني</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent transition outline-none">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2" data-key="form_subject">الموضوع</label>
+                            <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent transition outline-none">
+                                <option data-key="opt_general">استفسار عام</option>
+                                <option data-key="opt_erp">أنظمة ERP</option>
+                                <option data-key="opt_web">تصميم مواقع</option>
+                                <option data-key="opt_blockchain">بلوكتشين</option>
+                            </select>
+                        </div>
+                        <div class="mb-8">
+                            <label class="block text-sm font-medium text-gray-700 mb-2" data-key="form_message">الرسالة</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent transition outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition shadow-lg" data-key="form_btn">
+                            إرسال الرسالة
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2023 CommuNexis - Al Wasaya Al Khams Trading Co. <span data-key="footer_rights">All rights reserved.</span></p>
+        </div>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        // Translation Data
+        const translations = {
+            ar: {
+                company_legal: "شركة الوصايا الخمس للتجارة",
+                nav_home: "الرئيسية",
+                nav_about: "من نحن",
+                nav_services: "خدماتنا",
+                nav_contact: "تواصل معنا",
+                hero_badge: "المستقبل يبدأ هنا",
+                hero_title_1: "نحول الأنظمة التقليدية",
+                hero_title_2: "إلى حلول رقمية ذكية",
+                hero_desc: "في CommuNexis، نمكن الشركات والمؤسسات من قيادة التحول الرقمي من خلال تقنيات البلوكتشين، أنظمة ERP، وحلول الويب المتطورة.",
+                cta_primary: "ابدأ التحول الآن",
+                cta_secondary: "استكشف خدماتنا",
+                about_title: "من نحن؟",
+                about_img_text: "الابتكار • التطوير • المستقبل",
+                about_desc_1: "شركة الوصايا الخمس للتجارة هي شركة تقنية رائدة مقرها الرياض. نحن متخصصون في نقل المؤسسات العامة والخاصة من بيئة العمل التقليدية إلى بيئة رقمية متكاملة.",
+                about_desc_2: "نؤمن بأن التكنولوجيا ليست مجرد أدوات، بل هي المحرك الأساسي للنمو. فريقنا يجمع بين الخبرة الاستراتيجية والبراعة التقنية لتقديم حلول مخصصة تناسب احتياجاتك.",
+                feature_1: "حلول مبتكرة ومخصصة",
+                feature_2: "فريق تقني محترف",
+                feature_3: "دعم فني مستمر",
+                services_title: "خدماتنا التقنية",
+                services_subtitle: "نقدم مجموعة شاملة من الخدمات لضمان نجاح تحولك الرقمي",
+                srv_1_title: "بلوكتشين",
+                srv_1_desc: "حلول آمنة ولاممركزية لتوثيق البيانات والمعاملات بأحدث تقنيات سلاسل الكتل.",
+                srv_2_title: "أنظمة ERP",
+                srv_2_desc: "أنظمة تخطيط موارد المؤسسات لإدارة العمليات، الموارد البشرية، والمخزون بكفاءة عالية.",
+                srv_3_title: "تصميم مواقع",
+                srv_3_desc: "مواقع إلكترونية جذابة وسريعة تعزز تواجدك الرقمي وتخدم عملاءك على مدار الساعة.",
+                srv_4_title: "تصميم تطبيقات",
+                srv_4_desc: "تطبيقات هواتف ذكية (iOS & Android) بتجربة مستخدم سلسة وأداء عالي.",
+                srv_footer: "وكل ما يختص بالتقنية والحلول الرقمية",
+                contact_title: "تواصل معنا",
+                contact_subtitle: "هل أنت مستعد لنقل أعمالك للمستوى التالي؟ فريقنا جاهز للإجابة على استفساراتك.",
+                contact_loc_title: "الموقع",
+                contact_email_title: "البريد الإلكتروني",
+                contact_web_title: "الموقع الإلكتروني",
+                form_name: "الاسم",
+                form_phone: "رقم الهاتف",
+                form_email: "البريد الإلكتروني",
+                form_subject: "الموضوع",
+                form_message: "الرسالة",
+                form_btn: "إرسال الرسالة",
+                opt_general: "استفسار عام",
+                opt_erp: "أنظمة ERP",
+                opt_web: "تصميم مواقع",
+                opt_blockchain: "بلوكتشين",
+                footer_rights: "جميع الحقوق محفوظة.",
+                lang_label: "English"
+            },
+            en: {
+                company_legal: "Five Commandments Trading Co.",
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_services: "Services",
+                nav_contact: "Contact",
+                hero_badge: "The Future Starts Here",
+                hero_title_1: "Transforming Tradition",
+                hero_title_2: "Into Digital Innovation",
+                hero_desc: "At CommuNexis, we empower public and private enterprises to lead digital transformation through Blockchain, ERP systems, and advanced web solutions.",
+                cta_primary: "Get Started",
+                cta_secondary: "Explore Services",
+                about_title: "Who We Are",
+                about_img_text: "Innovation • Development • Future",
+                about_desc_1: "Al Wasaya Al Khams is a leading tech company based in Riyadh. We specialize in migrating public and private organizations from traditional workflows to integrated digital ecosystems.",
+                about_desc_2: "We believe technology isn't just a tool, but the core engine of growth. Our team combines strategic expertise with technical prowess to deliver tailored solutions.",
+                feature_1: "Innovative Custom Solutions",
+                feature_2: "Professional Tech Team",
+                feature_3: "Ongoing Technical Support",
+                services_title: "Our Services",
+                services_subtitle: "Comprehensive solutions to ensure your digital transformation success",
+                srv_1_title: "Blockchain",
+                srv_1_desc: "Secure, decentralized solutions for data verification and transactions using cutting-edge chain technology.",
+                srv_2_title: "ERP Systems",
+                srv_2_desc: "Enterprise Resource Planning systems to manage operations, HR, and inventory with high efficiency.",
+                srv_3_title: "Web Design",
+                srv_3_desc: "Attractive, fast websites that enhance your digital presence and serve customers around the clock.",
+                srv_4_title: "App Design",
+                srv_4_desc: "Smartphone applications (iOS & Android) with seamless UX and high performance.",
+                srv_footer: "And all things Tech & Digital",
+                contact_title: "Get in Touch",
+                contact_subtitle: "Ready to take your business to the next level? Our team is ready to answer your inquiries.",
+                contact_loc_title: "Location",
+                contact_email_title: "Email",
+                contact_web_title: "Website",
+                form_name: "Name",
+                form_phone: "Phone Number",
+                form_email: "Email Address",
+                form_subject: "Subject",
+                form_message: "Message",
+                form_btn: "Send Message",
+                opt_general: "General Inquiry",
+                opt_erp: "ERP Systems",
+                opt_web: "Web Design",
+                opt_blockchain: "Blockchain",
+                footer_rights: "All rights reserved.",
+                lang_label: "العربية"
+            }
+        };
+
+        let currentLang = 'ar';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            updatePageContent();
+        }
+
+        function updatePageContent() {
+            // 1. Change HTML dir and lang attributes
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            
+            // 2. Toggle Font Class
+            if(currentLang === 'ar') {
+                document.body.classList.remove('font-english');
+                document.body.classList.add('font-arabic');
+            } else {
+                document.body.classList.remove('font-arabic');
+                document.body.classList.add('font-english');
+            }
+
+            // 3. Update Text Content
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[currentLang][key]) {
+                    // Add simple fade effect
+                    el.classList.add('fade-in');
+                    setTimeout(() => el.classList.remove('fade-in'), 500);
+                    el.innerText = translations[currentLang][key];
+                }
+            });
+
+            // 4. Update Button Text
+            document.getElementById('lang-text').innerText = translations[currentLang].lang_label;
+            document.getElementById('lang-text-mobile').innerText = translations[currentLang].lang_label;
+            
+            // 5. Handle specific flex directions if needed (Tailwind usually handles this with RTL support, 
+            // but we ensure margin flipping manually if needed by the browser's engine)
+            const navLinks = document.querySelector('.md\\:flex');
+            if(currentLang === 'ar') {
+                 navLinks.classList.remove('space-x');
+                 navLinks.classList.add('space-x-reverse');
+            } else {
+                 navLinks.classList.add('space-x');
+                 navLinks.classList.remove('space-x-reverse');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
